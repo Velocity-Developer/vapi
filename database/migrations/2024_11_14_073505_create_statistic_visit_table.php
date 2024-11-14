@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('websites', function (Blueprint $table) {
+        Schema::create('statistic_visit', function (Blueprint $table) {
             $table->id();
-            $table->string('domain');
-            $table->string('ip_address');
-            $table->string('license_key')->nullable();
-            $table->string('wp_version');
-            $table->string('theme_version');
-            $table->string('addons_version');
-            $table->string('php_version');
+            $table->unsignedBigInteger('id_website');
+            $table->date('date');
+            $table->integer('counts')->default(0);
+            $table->foreign('id_website')->references('id')->on('websites')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('websites');
+        Schema::dropIfExists('statistic_visit');
     }
 };
