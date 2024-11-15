@@ -20,5 +20,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.test',
             'password' => Hash::make('password'),
         ]);
+
+        $this->call(
+            LicenseSeeder::class,
+        );
     }
 }
